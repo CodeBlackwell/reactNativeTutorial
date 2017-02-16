@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import SignIn from './components/setCredentials/signIn'
+
 export default class reactNativeTutorial extends Component {
   render() {
     return (
@@ -22,6 +24,7 @@ export default class reactNativeTutorial extends Component {
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
+          <SignIn/>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu

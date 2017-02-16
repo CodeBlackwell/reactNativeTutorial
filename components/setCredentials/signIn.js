@@ -6,27 +6,45 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  TextInput,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry,
+    Button,
+    TextInput,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 
 export default class signInForm extends Component {
-  render() {
+
+    constructor (){
+        super()
+
+        this._saveInfo = this._saveInfo.bind(this)
+    }
+
+  render () {
     return (
       <View style={styles.container}>
         <Text>Sign Up</Text>
-        <Text style={style.label}>First Name:</Text>
+        <Text style={styles.label}>First Name:</Text>
         <TextInput style={styles.input}/>
-        <Text style={style.label}>Last Name:</Text>
+        <Text style={styles.label}>Last Name:</Text>
         <TextInput style={styles.input}/>
-        <Text style={style.label}>Number of this Device:</Text>
+        <Text style={styles.label}>Number of this Device:</Text>
         <TextInput style={styles.input}/>
+          <Button
+              onPress={ this._saveInfo }
+              title="Learn More"
+              color="#841584"
+              accessibilityLabel="Learn more about this purple button"
+          />
       </View>
     );
   }
+  _saveInfo () {
+
+  }
+
 }
 
 const styles = StyleSheet.create({
