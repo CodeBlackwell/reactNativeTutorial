@@ -18,11 +18,11 @@ export default class signInForm extends Component {
     return (
       <View style={styles.container}>
         <Text>Sign Up</Text>
-        <Text style={style.label}>First Name:</Text>
+        <Text style={styles.label}>First Name:</Text>
         <TextInput style={styles.input}/>
-        <Text style={style.label}>Last Name:</Text>
+        <Text style={styles.label}>Last Name:</Text>
         <TextInput style={styles.input}/>
-        <Text style={style.label}>Number of this Device:</Text>
+        <Text style={styles.label}>Number of this Device:</Text>
         <TextInput style={styles.input}/>
       </View>
     );

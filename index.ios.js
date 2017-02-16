@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import SignInForm from './components/setCredentials/signIn'
+
 export default class reactNativeTutorial extends Component {
   render() {
     return (
