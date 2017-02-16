@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -21,6 +15,7 @@ export default class reactNativeTutorial extends Component {
         <Text style={styles.welcome}>
         Gravy Baby - its wavy
         </Text>
+        <SignInForm />
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
         </Text>
@@ -30,6 +25,17 @@ export default class reactNativeTutorial extends Component {
         </Text>
       </View>
     );
+  }
+
+  _renderHome () {
+    //if the user has not been defined, render sign in
+    if (0) {
+      return
+    }
+    //else render the messaging screen with custom greeting
+     else {
+      return
+    }
   }
 }
 
