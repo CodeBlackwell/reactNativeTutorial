@@ -17,7 +17,7 @@ export default class reactNativeTutorial extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Obey me
+        Gravy Baby - its wavy
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
