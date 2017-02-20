@@ -1,0 +1,5 @@
+project './ios/reactNativeTutorial.xcodeproj'
+target 'reactNativeTutorial' do
+  use_frameworks!
+  pod 'smooch'
+end

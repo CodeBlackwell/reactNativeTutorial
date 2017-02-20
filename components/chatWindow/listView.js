@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { AppRegistry, ListView, Text, View } from 'react-native';
 
-class ListViewBasics extends Component {
-  // Initialize the hardcoded data
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
-    };
-  }
+export default class ListViewBasics extends Component {
+  
   render() {
+    { data } = this.props
     return (
       <View style={{ flex: 1, paddingTop: 22 }}>
-        <ListView
-          dataSource={ this.state.dataSource }
-          renderRow={ (rowData) => <Text>{ rowData }</Text>}
-        />
+        <List containerStyle={{ marginBottom: 20 }}>
+          { data.map((data, i) => (
+              <ListItem
+                key={ i }
+                title={ data.name }
+              >
+                <Text>
+                  { data.message }
+                </Text>
+              </ListItem>
+            ))
+          }
+          
+        </List>
       </View>
     );
   }
