@@ -44,7 +44,7 @@ export default class SignInForm extends Component {
                 />
                 <Button
                     onPress={ this._saveInfo }
-                    title="Learn More"
+                    title="Receive Assistance"
                     color="#841584"
                     accessibilityLabel="Learn more about this purple button"
                 />

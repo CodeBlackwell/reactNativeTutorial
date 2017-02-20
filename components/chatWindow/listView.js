@@ -4,7 +4,7 @@ import { AppRegistry, ListView, Text, View } from 'react-native';
 export default class ListViewBasics extends Component {
   
   render() {
-    { data } = this.props
+    const { data } = this.props
     return (
       <View style={{ flex: 1, paddingTop: 22 }}>
         <List containerStyle={{ marginBottom: 20 }}>
