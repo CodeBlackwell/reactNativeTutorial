@@ -22,13 +22,13 @@ export default class SignInForm extends Component {
 
     render () {
         return (
-            <View style={styles.container}>
-                <Text>Sign Up</Text>
-                <Text style={styles.label}>First Name:</Text>
+            <View style={ styles.container }>
+                <Text style={ styles.subtitle }>Let's get started!</Text>
+                <Text style={ styles.label }>First Name:</Text>
                 <TextInput
-                    style={styles.input}
-                    onChangeText={(firstName) => this.setState({firstName})}
-                    value={this.state.firstName}
+                    style={ styles.input }
+                    onChangeText={(firstName) => this.setState({ firstName })}
+                    value={ this.state.firstName }
                 />
                 <Text style={styles.label}>Last Name:</Text>
                 <TextInput
@@ -102,6 +102,10 @@ const styles = StyleSheet.create({
     },
     label:     {
         fontSize: 18
+    },
+    subtitle: {
+      marginBottom: 70,
+      fontSize: 16
     }
 });
 

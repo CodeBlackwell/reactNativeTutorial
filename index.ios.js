@@ -24,11 +24,11 @@ export default class reactNativeTutorial extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    Gravy Baby - its wavy
+                   Welcome to the Get Help App by Freedom House Reentry!
                 </Text>
                 { this._renderHome() }
             </View>
-        );
+        )
     }
 
     _renderHome () {
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         fontSize:  20,
         textAlign: 'center',
         margin:    10,
+        marginTop: 50
     },
     instructions: {
         textAlign:    'center',

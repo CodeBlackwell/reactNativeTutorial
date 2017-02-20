@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react'
 import { AppRegistry, AsyncStorage, Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native'
 
@@ -21,11 +16,11 @@ export default class ChatWindow extends Component {
 
     render () {
         return (
-            <View style={styles.container}>
+            <View style={ styles.container }>
                 <TextInput
                 style={ styles.input }
-                onChangeText={ (unsentMessage) => this.setState({unsentMessage})}
-                value={this.state.unsentMessage}
+                onChangeText={ (unsentMessage) => this.setState({ unsentMessage })}
+                value={ this.state.unsentMessage }
                 />
                 <Button
                     onPress={ this._sendMessage }
