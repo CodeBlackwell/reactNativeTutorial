@@ -30,14 +30,14 @@ export default class ChatWindow extends Component {
         return (
             <View style={ styles.container }>
                 <View style={styles.constainer }>
-                    <Text style={ {margin: 30}}>Welcome { `${JSON.stringify(this.state.fullName)}` }</Text>
+                    <Text style={ {margin: 30} }>Welcome { `${ JSON.stringify(this.state.fullName) }` }</Text>
                 </View>
                 <MessageList
                 listItems={ this.state.chatHistory }
                  />
                 <TextInput
                 style={ styles.input }
-                onChangeText={ (unsentMessage) => this.setState({ unsentMessage })}
+                onChangeText={ (unsentMessage) => this.setState({ unsentMessage }) }
                 value={ this.state.unsentMessage }
                 />
                 <Button
@@ -51,7 +51,7 @@ export default class ChatWindow extends Component {
     }
 
     componentDidMount() {
-        this.setState({fullName: this._renderName()})
+        this.setState({ fullName: this._renderName() })
     }
 
     async _renderName() {
