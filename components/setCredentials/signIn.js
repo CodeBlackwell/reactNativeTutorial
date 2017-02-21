@@ -1,68 +1,97 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
-  AppRegistry,
-  AsynchStorage,
-  Alert,
-  Button,
-  TextInput,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+    AppRegistry, 
+    AsyncStorage, 
+    Alert, 
+    Button, 
+    TextInput,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
 
 
-export default class InputForm extends Component ({
+export default class SignInForm extends Component {
 
+    constructor (props) {
+        super(props)
 
-  render () {
-    return (
-      <View style={ styles.container }>
-        <Text>Free ReEntry</Text>
-        <Text 
-        style={ styles.label } >First Name:</Text>
-        <TextInput
-        style={ styles.input }
-        onChangeText={ (firstName) => this.setState({ firstName }) }/>
-        <Text style={ styles.label }>Last Name:</Text>
-        <TextInput 
-        style={ styles.input }
-        onChangeText={ (lastName) => this.setState({ lastName }) }/>
-        
-        <Text style={ styles.label }>Number of this Device:</Text>
-        <TextInput 
-        style={ styles.input }
-        onChangeText={ (number) => this.setState({ number }) }/>
-        <Button onPress={this._validateAndSave}></Button>  
-      </View>
-    );
-  }
+        this._saveInfo = this._saveInfo.bind(this)
 
-  asynch _validateAndSave() {
-    const { firstName, lastName, number } = this.state
-
-    if (firstName == null) {
-        Alert.alert('Please input your First Name')
+        this.state = {
+            firstName: null,
+            lastName:  null,
+            number:    null
+        }
     }
-    if (lastName == null) {
-        Alert.alert('Please input your Last Name')
-    }
-    if (number == null) {
-        Alert.alert('Please input the number to this device')
-    }
-  }
 
-  if (firstName && lastName && number) {
-    try {
-    await AsynchStorage.setItem('username', [firstName, lastName].join(' '))
-    await AsynchStorage.setItem('number', number)
+    render () {
 
-    } catch (error) {
-      throw error
+        return (
+            <View style={ styles.container }>
+                <Text style={ styles.subtitle }>Let's get started!</Text>
+                <Text style={ styles.label }>First Name:</Text>
+                <TextInput
+                    style={ styles.input }
+                    onChangeText={(firstName) => this.setState({ firstName })}
+                    value={ this.state.firstName }
+                />
+                <Text style={styles.label}>Last Name:</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={(lastName) => this.setState({lastName})}
+                    value={this.state.lastName}
+                />
+                <Text style={styles.label}>Number of this Device:</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={(number) => this.setState({number})}
+                    value={this.state.number}
+                />
+                <Button
+                    onPress={ this._saveInfo }
+                    title="Receive Assistance"
+                    color="#841584"
+                    accessibilityLabel="Learn more about this purple button"
+                />
+            </View>
+        ); 
     }
-  }
-});
 
+    async _saveInfo () {
+        const { firstName, lastName, number } = this.state
+        if (!firstName) {
+            Alert.alert('Input your First Name')
+        }
+        else if (!lastName) {
+            Alert.alert('Input your First Name')
+        }
+        else if (!validatePhoneNumber(number)) {
+            validatePhoneNumber(number)
+        }
+        else {
+            try {
+                await AsyncStorage.setItem('username', [firstName, lastName].join(' '))
+                await AsyncStorage.setItem('number', number)
+            } catch (error) {
+                console.log(error)
+            }   
+            this.props.onSuccess()
+        }
+    }
+
+}
+
+function validatePhoneNumber (number) {
+    number = number.toString().replace(/[^0-9]/g, '')
+    if (number.length !== 10) {
+        Alert.alert('Please enter the 10-digit number to this device. No special characters')
+        return false
+    }
+    return true
+}
 const styles = StyleSheet.create({
+
   button: {
     fontSize: 20,
     color: 'blue'
@@ -86,4 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 18
   }
 });
-AppRegistry.registerComponent('reactNativeTutorial', () => InputForm);
+
+
+AppRegistry.registerComponent('signInForm', () => SignInForm);
