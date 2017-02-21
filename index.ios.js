@@ -1,3 +1,8 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
 import React, { Component } from 'react'
 import { AppRegistry, StyleSheet, Text, View } from 'react-native'
 
@@ -5,27 +10,22 @@ import SignIn from './components/setCredentials/signIn'
 import Chat from './components/chatWindow/chatWindow'
 
 export default class reactNativeTutorial extends Component {
-
     constructor (props) {
-        
         super(props)
 
         this._signInSuccess = this._signInSuccess.bind(this)
-
+        //@todo;change
         this.state = {
-            signedIn: false
+            signedIn: true
         }
     }
 
     render () {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>
-                   Welcome to the Get Help App by Freedom House Reentry!
-                </Text>
                 { this._renderHome() }
             </View>
-        )
+        );
     }
 
     _renderHome () {
@@ -50,12 +50,6 @@ const styles = StyleSheet.create({
         justifyContent:  'center',
         alignItems:      'center',
         backgroundColor: '#F5FCFF',
-    },
-    welcome:      {
-        fontSize:  20,
-        textAlign: 'center',
-        margin:    10,
-        marginTop: 50
     },
     instructions: {
         textAlign:    'center',

@@ -1,15 +1,19 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
 import React, { Component } from 'react'
-import {
-    AppRegistry, 
-    AsyncStorage, 
-    Alert, 
-    Button, 
+import { 
+    AppRegistry,
+    AsyncStorage,
+    Alert,
+    Button,
     TextInput,
     StyleSheet,
     Text,
     View
 } from 'react-native'
-
 
 export default class SignInForm extends Component {
 
@@ -19,30 +23,25 @@ export default class SignInForm extends Component {
         this._saveInfo = this._saveInfo.bind(this)
 
         this.state = {
-            firstName: null,
-            lastName:  null,
-            number:    null
+            fullName: null,
+            number:   null
         }
     }
 
     render () {
-
         return (
-            <View style={ styles.container }>
-                <Text style={ styles.subtitle }>Let's get started!</Text>
-                <Text style={ styles.label }>First Name:</Text>
-                <TextInput
-                    style={ styles.input }
-                    onChangeText={(firstName) => this.setState({ firstName })}
-                    value={ this.state.firstName }
-                />
-                <Text style={styles.label}>Last Name:</Text>
+            <View style={styles.container}>
+                <Text style={styles.welcome}>
+                    Welcome to the Get Help App by Freedom House ReEntry
+                </Text>
+               
+                <Text style={styles.label}>Your Name</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(lastName) => this.setState({lastName})}
-                    value={this.state.lastName}
+                    onChangeText={(fullName) => this.setState({fullName})}
+                    value={this.state.fullName}
                 />
-                <Text style={styles.label}>Number of this Device:</Text>
+                <Text style={styles.label}>This Device's Phone Number</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(number) => this.setState({number})}
@@ -50,32 +49,29 @@ export default class SignInForm extends Component {
                 />
                 <Button
                     onPress={ this._saveInfo }
-                    title="Receive Assistance"
+                    title="Learn More"
                     color="#841584"
                     accessibilityLabel="Learn more about this purple button"
                 />
             </View>
-        ); 
+        );
     }
 
     async _saveInfo () {
-        const { firstName, lastName, number } = this.state
-        if (!firstName) {
-            Alert.alert('Input your First Name')
-        }
-        else if (!lastName) {
-            Alert.alert('Input your First Name')
+        const { fullName, number } = this.state
+        if (!fullName) {
+            Alert.alert('Input your Full Name')
         }
         else if (!validatePhoneNumber(number)) {
-            validatePhoneNumber(number)
+            return
         }
         else {
-            try {
-                await AsyncStorage.setItem('username', [firstName, lastName].join(' '))
+            try{
+                await AsyncStorage.setItem('fullName', fullName)
                 await AsyncStorage.setItem('number', number)
             } catch (error) {
                 console.log(error)
-            }   
+            }
             this.props.onSuccess()
         }
     }
@@ -91,30 +87,34 @@ function validatePhoneNumber (number) {
     return true
 }
 const styles = StyleSheet.create({
-
-  button: {
-    fontSize: 20,
-    color: 'blue'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  input: {
-    padding: 4,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 5,
-    width: 200,
-    alignSelf: 'center'
-  },
-  label: {
-    fontSize: 18
-  }
+    container: {
+        flex:           1,
+        justifyContent: 'center',
+        alignItems:     'center',
+    },
+    welcome:      {
+        fontSize:  24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin:    10,
+        marginBottom: 50
+    },
+    input:     {
+        padding:      4,
+        height:       40,
+        borderColor:  'gray',
+        borderWidth:  1,
+        borderRadius: 5,
+        margin:       5,
+        width:        300,
+        alignSelf:    'center'
+    },
+    label:     {
+        alignSelf: 'flex-start',
+        marginTop: 20,
+        marginLeft: 34,
+        fontSize: 18
+    }
 });
-
 
 AppRegistry.registerComponent('signInForm', () => SignInForm);
