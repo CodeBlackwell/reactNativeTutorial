@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { AppRegistry, AsyncStorage, Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native'
+import { 
+    AppRegistry,
+    AsyncStorage,
+    Alert,
+    Button,
+    TextInput,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
 
 import ListView from './listView'
 
@@ -11,7 +20,7 @@ export default class ChatWindow extends Component {
         this_sendMessage = this._sendMessage.bind(this)
 
         this.state = {
-            chatHistory: [],
+            chatHistory: generateData(),
             unsentMessage: null
         }
     }
@@ -86,11 +95,14 @@ function generateData() {
     'If that\'s the case, this doesn\'t even matter' ]
     }
     return splitData.names.map( name => {
-        let index = Math.random() * splitData.messages.length
-        index = index.floor
+        let index = (Math.random() * splitData.messages.length)
+        index = Math.round(index)
+        console.log(index)
         return { name, message: splitData.messages[index] }
     })
 }
+
+
 
 
 

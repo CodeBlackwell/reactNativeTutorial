@@ -7,7 +7,7 @@ export default class ListViewBasics extends Component {
     const { data } = this.props
     return (
       <View style={{ flex: 1, paddingTop: 22 }}>
-        <List containerStyle={{ marginBottom: 20 }}>
+        <ListView containerStyle={{ marginBottom: 20 }}>
           { data.map((data, i) => (
               <ListItem
                 key={ i }
@@ -20,7 +20,7 @@ export default class ListViewBasics extends Component {
             ))
           }
           
-        </List>
+        </ListView>
       </View>
     );
   }

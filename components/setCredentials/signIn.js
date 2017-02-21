@@ -4,7 +4,17 @@
  * @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, AsyncStorage, Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native'
+import {
+    AppRegistry, 
+    AsyncStorage, 
+    Alert, 
+    Button, 
+    TextInput,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
+
 
 export default class SignInForm extends Component {
 
@@ -21,6 +31,7 @@ export default class SignInForm extends Component {
     }
 
     render () {
+
         return (
             <View style={ styles.container }>
                 <Text style={ styles.subtitle }>Let's get started!</Text>
@@ -49,7 +60,7 @@ export default class SignInForm extends Component {
                     accessibilityLabel="Learn more about this purple button"
                 />
             </View>
-        );
+        ); 
     }
 
     async _saveInfo () {
@@ -64,12 +75,12 @@ export default class SignInForm extends Component {
             validatePhoneNumber(number)
         }
         else {
-            try{
+            try {
                 await AsyncStorage.setItem('username', [firstName, lastName].join(' '))
                 await AsyncStorage.setItem('number', number)
             } catch (error) {
                 console.log(error)
-            }
+            }   
             this.props.onSuccess()
         }
     }
