@@ -23,6 +23,9 @@ export default class SignInForm extends Component {
     render () {
         return (
             <View style={styles.container}>
+                <Text style={styles.welcome}>
+                    Welcome to the Get Help App by Freedom House ReEntry
+                </Text>
                 <Text>Sign Up</Text>
                 <Text style={styles.label}>First Name:</Text>
                 <TextInput
@@ -61,7 +64,7 @@ export default class SignInForm extends Component {
             Alert.alert('Input your First Name')
         }
         else if (!validatePhoneNumber(number)) {
-            validatePhoneNumber(number)
+            return
         }
         else {
             try{
@@ -89,6 +92,12 @@ const styles = StyleSheet.create({
         flex:           1,
         justifyContent: 'center',
         alignItems:     'center',
+    },
+    welcome:      {
+        fontSize:  24,
+        textAlign: 'center',
+        margin:    10,
+        marginBottom: 50
     },
     input:     {
         padding:      4,
