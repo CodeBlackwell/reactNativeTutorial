@@ -67,7 +67,7 @@ export default class SignInForm extends Component {
         }
         else {
             try{
-                await AsyncStorage.setItem('username', fullName)
+                await AsyncStorage.setItem('fullName', fullName)
                 await AsyncStorage.setItem('number', number)
             } catch (error) {
                 console.log(error)

@@ -21,20 +21,24 @@ export default class ChatWindow extends Component {
 
         this.state = {
             chatHistory: [{username: 'steven', message: 'Sweet holy red rims!'}],
-            unsentMessage: null
+            unsentMessage: null,
+            fullName: null
         }
     }
 
     render () {
         return (
-            <View style={styles.container}>
+            <View style={ styles.container }>
+                <View style={styles.constainer }>
+                    <Text style={ {margin: 30}}>Welcome { `${JSON.stringify(this.state.fullName)}` }</Text>
+                </View>
                 <MessageList
-                listItems={this.state.chatHistory}
+                listItems={ this.state.chatHistory }
                  />
                 <TextInput
                 style={ styles.input }
-                onChangeText={ (unsentMessage) => this.setState({unsentMessage})}
-                value={this.state.unsentMessage}
+                onChangeText={ (unsentMessage) => this.setState({ unsentMessage })}
+                value={ this.state.unsentMessage }
                 />
                 <Button
                     onPress={ this._sendMessage }
@@ -46,10 +50,24 @@ export default class ChatWindow extends Component {
         );
     }
 
+    componentDidMount() {
+        this.setState({fullName: this._renderName()})
+    }
+
+    async _renderName() {
+        try{
+            return await AsyncStorage.getItem('fullName')    
+        } catch ( error ) {
+            console.error(error)
+        }
+    }
+
     _sendMessage () {
         const prev = this.state.chatHistory
         this.setState({ chatHistory: prev.concat(unsentMessage) })  
     }
+
+
 }
 
 const styles = StyleSheet.create({

@@ -10,17 +10,21 @@ class ListViewDemo extends React.Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-        dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+        //Here is where the message data will go
+        dataSource: ds.cloneWithRows([
+          { message: 'message1' },
+          { message: 'message2' }
+          ]),
     };
   }
     render() {
         return (
           <ListView
-            style={styles.container}
-            dataSource={this.state.dataSource}
-            renderRow={(data) => <Row {...data} />}
+            style={ styles.container }
+            dataSource={ this.state.dataSource }
+            renderRow={ (data) => <Row {...data}/> }
           />
         );
     }
