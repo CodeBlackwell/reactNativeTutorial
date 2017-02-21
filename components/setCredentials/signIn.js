@@ -14,9 +14,8 @@ export default class SignInForm extends Component {
         this._saveInfo = this._saveInfo.bind(this)
 
         this.state = {
-            firstName: null,
-            lastName:  null,
-            number:    null
+            fullName: null,
+            number:   null
         }
     }
 
@@ -26,20 +25,14 @@ export default class SignInForm extends Component {
                 <Text style={styles.welcome}>
                     Welcome to the Get Help App by Freedom House ReEntry
                 </Text>
-                <Text>Sign Up</Text>
-                <Text style={styles.label}>First Name:</Text>
+               
+                <Text style={styles.label}>Your Name</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(firstName) => this.setState({firstName})}
-                    value={this.state.firstName}
+                    onChangeText={(fullName) => this.setState({fullName})}
+                    value={this.state.fullName}
                 />
-                <Text style={styles.label}>Last Name:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(lastName) => this.setState({lastName})}
-                    value={this.state.lastName}
-                />
-                <Text style={styles.label}>Number of this Device:</Text>
+                <Text style={styles.label}>This Device's Phone Number</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(number) => this.setState({number})}
@@ -56,19 +49,16 @@ export default class SignInForm extends Component {
     }
 
     async _saveInfo () {
-        const { firstName, lastName, number } = this.state
-        if (!firstName) {
-            Alert.alert('Input your First Name')
-        }
-        else if (!lastName) {
-            Alert.alert('Input your First Name')
+        const { fullName, number } = this.state
+        if (!fullName) {
+            Alert.alert('Input your Full Name')
         }
         else if (!validatePhoneNumber(number)) {
             return
         }
         else {
             try{
-                await AsyncStorage.setItem('username', [firstName, lastName].join(' '))
+                await AsyncStorage.setItem('username', fullName)
                 await AsyncStorage.setItem('number', number)
             } catch (error) {
                 console.log(error)
@@ -95,6 +85,7 @@ const styles = StyleSheet.create({
     },
     welcome:      {
         fontSize:  24,
+        fontWeight: 'bold',
         textAlign: 'center',
         margin:    10,
         marginBottom: 50
@@ -106,10 +97,13 @@ const styles = StyleSheet.create({
         borderWidth:  1,
         borderRadius: 5,
         margin:       5,
-        width:        200,
+        width:        300,
         alignSelf:    'center'
     },
     label:     {
+        alignSelf: 'flex-start',
+        marginTop: 20,
+        marginLeft: 34,
         fontSize: 18
     }
 });
