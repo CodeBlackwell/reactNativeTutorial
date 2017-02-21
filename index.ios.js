@@ -14,9 +14,9 @@ export default class reactNativeTutorial extends Component {
         super(props)
 
         this._signInSuccess = this._signInSuccess.bind(this)
-
+        //@todo;change
         this.state = {
-            signedIn: false
+            signedIn: true
         }
     }
 

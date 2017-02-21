@@ -4,7 +4,16 @@
  * @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, AsyncStorage, Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native'
+import { 
+    AppRegistry,
+    AsyncStorage,
+    Alert,
+    Button,
+    TextInput,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
 
 export default class SignInForm extends Component {
 

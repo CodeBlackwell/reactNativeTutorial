@@ -1,10 +1,16 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react'
-import { AppRegistry, AsyncStorage, Alert, Button, TextInput, StyleSheet, Text, View } from 'react-native'
+import { 
+    AppRegistry,
+    AsyncStorage,
+    Alert,
+    Button,
+    TextInput,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native'
+
+import MessageList from './messageList'
 
 export default class ChatWindow extends Component {
 
@@ -14,7 +20,7 @@ export default class ChatWindow extends Component {
         this_sendMessage = this._sendMessage.bind(this)
 
         this.state = {
-            chatHistory: [],
+            chatHistory: [{username: 'steven', message: 'Sweet holy red rims!'}],
             unsentMessage: null
         }
     }
@@ -22,6 +28,9 @@ export default class ChatWindow extends Component {
     render () {
         return (
             <View style={styles.container}>
+                <MessageList
+                listItems={this.state.chatHistory}
+                 />
                 <TextInput
                 style={ styles.input }
                 onChangeText={ (unsentMessage) => this.setState({unsentMessage})}
@@ -46,8 +55,9 @@ export default class ChatWindow extends Component {
 const styles = StyleSheet.create({
     container: {
         flex:           1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems:     'center',
+
     },
     input:     {
         padding:      4,
@@ -56,7 +66,7 @@ const styles = StyleSheet.create({
         borderWidth:  1,
         borderRadius: 5,
         margin:       5,
-        width:        200,
+        width:        300,
         alignSelf:    'center'
     }
 });
